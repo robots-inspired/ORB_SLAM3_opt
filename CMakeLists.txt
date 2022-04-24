@@ -39,7 +39,6 @@ MESSAGE("OPENCV VERSION:")
 MESSAGE(${OpenCV_VERSION})
 
 find_package(Eigen3 3.1.0 REQUIRED)
-# find_package(realsense2)
 set(realsense2_FOUND 0)
 
 include_directories(
