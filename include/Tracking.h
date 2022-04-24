@@ -23,8 +23,6 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>
 
-#include "Viewer.h"
-#include "FrameDrawer.h"
 #include "Atlas.h"
 #include "LocalMapping.h"
 #include "LoopClosing.h"
@@ -32,7 +30,6 @@
 #include "ORBVocabulary.h"
 #include "KeyFrameDatabase.h"
 #include "ORBextractor.h"
-#include "MapDrawer.h"
 #include "System.h"
 #include "ImuTypes.h"
 #include "Settings.h"
@@ -45,8 +42,6 @@
 namespace ORB_SLAM3
 {
 
-class Viewer;
-class FrameDrawer;
 class Atlas;
 class LocalMapping;
 class LoopClosing;
@@ -58,7 +53,7 @@ class Tracking
 
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    Tracking(System* pSys, ORBVocabulary* pVoc, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Atlas* pAtlas,
+    Tracking(System* pSys, ORBVocabulary* pVoc, Atlas* pAtlas,
              KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, Settings* settings, const string &_nameSeq=std::string());
 
     ~Tracking();
@@ -77,9 +72,6 @@ public:
 
     void SetLocalMapper(LocalMapping* pLocalMapper);
     void SetLoopClosing(LoopClosing* pLoopClosing);
-    void SetViewer(Viewer* pViewer);
-    void SetStepByStep(bool bSet);
-    bool GetStepByStep();
 
     // Load new settings
     // The focal lenght should be similar or scale prediction will fail when projecting points
@@ -156,7 +148,6 @@ public:
 
     // frames with estimated pose
     int mTrackedFr;
-    bool mbStep;
 
     // True if local mapping is deactivated and we are performing only localization
     bool mbOnlyTracking;
@@ -277,12 +268,6 @@ protected:
     // System
     System* mpSystem;
     
-    //Drawers
-    Viewer* mpViewer;
-    FrameDrawer* mpFrameDrawer;
-    MapDrawer* mpMapDrawer;
-    bool bStepByStep;
-
     //Atlas
     Atlas* mpAtlas;
 

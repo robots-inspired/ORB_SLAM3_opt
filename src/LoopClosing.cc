@@ -167,8 +167,6 @@ void LoopClosing::Run()
 
                         mg2oMergeScw = mg2oMergeSlw;
 
-                        //mpTracker->SetStepByStep(true);
-
                         Verbose::PrintMess("*Merge detected", Verbose::VERBOSITY_QUIET);
 
 #ifdef REGISTER_TIMES
